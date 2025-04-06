@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATBskyLive - Blueskyライブ配信</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ATBskyLive</h1>
+            <div class="auth-section">
+                <button id="loginBtn" class="btn">Blueskyでログイン</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="stream-controls">
+                <div class="mode-selector">
+                    <button id="cameraMode" class="btn active">カメラモード</button>
+                    <button id="radioMode" class="btn">ラジオモード</button>
+                </div>
+
+                <div class="stream-settings">
+                    <input type="text" id="streamTitle" placeholder="配信タイトルを入力">
+                    <button id="startStream" class="btn primary" disabled>配信開始</button>
+                </div>
+            </div>
+
+            <div class="stream-container">
+                <video id="localVideo" autoplay muted></video>
+                <div id="radioImage" class="hidden">
+                    <img src="" alt="ラジオ画像">
+                    <input type="file" id="imageUpload" accept="image/*">
+                </div>
+            </div>
+
+            <div class="chat-container">
+                <div id="chatMessages"></div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="コメントを入力" disabled>
+                    <button id="sendComment" class="btn" disabled>送信</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html> 
