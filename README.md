@@ -32,20 +32,47 @@ npm install
 
 3. 環境変数の設定:
 ```bash
+# .env.exampleをコピーして.envファイルを作成
 cp .env.example .env
+
+# .envファイルを編集して必要な設定を行う
+nano .env
 ```
-`.env`ファイルを編集し、必要な設定を行います。
+
+`.env`ファイルに以下の設定を行います：
+- `PORT`: サーバーのポート番号（デフォルト: 3000）
+- `NODE_ENV`: 環境設定（development または production）
+- `BLUESKY_SERVICE`: BlueskyのAPIエンドポイント
+- `STUN_SERVER`: WebRTC用のSTUNサーバー
+- `TURN_SERVER`: WebRTC用のTURNサーバー（必要に応じて）
+- `SESSION_SECRET`: セッション管理用の秘密鍵
+- `CORS_ORIGIN`: CORSの許可オリジン
 
 4. Nginxの設定:
 ```bash
+# Nginxの設定ディレクトリを作成
+sudo mkdir -p /etc/nginx/sites-available
+sudo mkdir -p /etc/nginx/sites-enabled
+
+# 設定ファイルをコピー
 sudo cp nginx/at-bsky-live.conf /etc/nginx/sites-available/
+
+# シンボリックリンクを作成
 sudo ln -s /etc/nginx/sites-available/at-bsky-live.conf /etc/nginx/sites-enabled/
+
+# 設定のテスト
 sudo nginx -t
+
+# Nginxを再起動
 sudo systemctl restart nginx
 ```
 
 5. サービスの起動:
 ```bash
+# スクリプトに実行権限を付与
+sudo chmod +x start_atbskylive.sh
+
+# スクリプトを実行
 sudo ./start_atbskylive.sh
 ```
 
